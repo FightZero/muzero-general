@@ -6,4 +6,4 @@ ray
 seaborn
 nevergrad
 opencv-python
-retro
+gym-retro
