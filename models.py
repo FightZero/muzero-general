@@ -632,8 +632,9 @@ def mlp(
 ):
     sizes = [input_size] + layer_sizes + [output_size]
     layers = []
-    for i in range(len(sizes) - 1):
-        act = activation if i < len(sizes) - 2 else output_activation
+    length = len(sizes)
+    for i in range(length - 1):
+        act = activation if i < length - 2 else output_activation
         layers += [torch.nn.Linear(sizes[i], sizes[i + 1]), act()]
     return torch.nn.Sequential(*layers)
 
@@ -683,3 +684,5 @@ def scalar_to_support(x, support_size):
     indexes = indexes.masked_fill_(2 * support_size < indexes, 0.0)
     logits.scatter_(2, indexes.long().unsqueeze(-1), prob.unsqueeze(-1))
     return logits
+
+
